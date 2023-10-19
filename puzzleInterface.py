@@ -1,7 +1,8 @@
-  
 import pygame
 
 from Classes.RushHourPuzzle import RushHourPuzzle
+
+puzzle_file = "puzzles/1.csv"
 
 
 # Initialize Pygame
@@ -18,9 +19,14 @@ BLUE = (102, 102, 204)
 PURPLE = (153, 102, 255)
 GREEN = (102, 204, 102)
 
+# Create a RushHourPuzzle object and set up the board
+puzzle = RushHourPuzzle()
+puzzle.setVehicles(puzzle_file)
+puzzle.setBoard()
+
 # Define the window size based on the Rush Hour puzzle dimensions
-board_width = 6
-board_height = 6
+board_width = puzzle.board_width
+board_height = puzzle.board_height
 cell_size = 80  # Adjust cell size for better visibility
 window_width = board_width * cell_size + 2 * cell_size  # Add extra for margin
 window_height = board_height * cell_size + 2 * cell_size  # Add extra for margin
@@ -34,10 +40,6 @@ border_size = 5  # Adjust this value for the desired border width
 screen = pygame.display.set_mode((window_width, window_height))
 pygame.display.set_caption("Rush Hour Puzzle Visualization")
 
-# Create a RushHourPuzzle object and set up the board
-puzzle = RushHourPuzzle()
-puzzle.setVehicles("puzzles/1.csv")
-puzzle.setBoard()
 
 print(puzzle.board)
 
