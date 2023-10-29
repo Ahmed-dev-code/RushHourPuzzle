@@ -109,5 +109,11 @@ for node in path:
     for row in node.state.board:
         print(row)
     print()
+    
+print("your puzzle: \n")
+for row in puzzle.board:
+    print(row)
+print()
+ 
 print(solution)
 print("steps: " ,steps)

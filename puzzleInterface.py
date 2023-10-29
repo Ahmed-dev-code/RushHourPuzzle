@@ -2,7 +2,7 @@ import pygame
 
 from Classes.RushHourPuzzle import RushHourPuzzle
 
-puzzle_file = "puzzles/1.csv"
+puzzle_file = "puzzles/test.csv"
 
 
 # Initialize Pygame
