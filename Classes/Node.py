@@ -22,13 +22,13 @@ class Node:
     
     def getSolution(self):
         # Return the list of actions from the root to this node
-        # return [node.action for node in self.getPath()[1:]]
-        actions = []
-        node = self
-        while node != None:
-            actions.append(node.action)
-            node = node.parent
-        return actions[::-1]
+        return [node.action for node in self.getPath()[1:]]
+        # actions = []
+        # node = self
+        # while node != None:
+        #     actions.append(node.action)
+        #     node = node.parent
+        # return actions[::-1]
     
     def setF(self, heuristic):
         #This function calculates the fitness function f based on a heuristic function h

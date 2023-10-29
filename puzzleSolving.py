@@ -27,18 +27,23 @@ def astar(puzzle):
     open_list = [(start_node.f, start_node)]  # priority queue for the nodes to be expanded
     closed_set = set() # set of nodes that have already been expanded (we don't want to expand them again)
     
+    # number of steps
+    steps = 0
     while open_list:
         _, current_node = heapq.heappop(open_list)  # pop the node with the lowest f value
-        
         if current_node.state.isGoal():
             path = current_node.getPath()
             solution = current_node.getSolution()
             print("Goal state reached!")
-            return path, solution
+            return path, solution,steps
         
         closed_set.add(current_node.state)
+        steps += 1
 
         successors = current_node.state.successorFunction()
+        
+        # print the successors
+        print([action for action in successors])
         
         for action, successor_state in successors:
             g = current_node.g + 1  # Assuming a step cost of 1
@@ -46,7 +51,7 @@ def astar(puzzle):
             
             print("Expanding node with action:", action)
             print("Current state:")
-            for row in successor_state.board:
+            for row in current_node.state.board:
                 print(row)
             print("Action:", action)
             print("Successor state:")
@@ -94,9 +99,15 @@ for row in puzzle.board:
 print()
 
 print(puzzle.isGoal())
-print(puzzle.successorFunction()) 
+# print(puzzle.successorFunction()) 
 
 
-path, solution = astar(puzzle)
-print(path)
+path, solution,steps = astar(puzzle)
+# print(path)
+for node in path:
+    print(node.action)
+    for row in node.state.board:
+        print(row)
+    print()
 print(solution)
+print("steps: " ,steps)
